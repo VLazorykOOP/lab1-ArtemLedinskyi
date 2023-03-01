@@ -1,4 +1,4 @@
-﻿ // ArrayFile.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// ArrayFile.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
 
 #include <iostream>
@@ -8,16 +8,17 @@
 
 #include <time.h>
 
+
 using namespace std;
 
 typedef double* pDouble;
 /*
 *   ConsoleInputArrayDouble
-*   
+*
 */
 int ConsoleInputSizeArray(const int sizeMax)
 {
-    int size = 0; 
+    int size = 0;
     do {
         cout << " Input size Array ( 0< 1 < " << sizeMax << " ) ";
         cin >> size;
@@ -31,7 +32,7 @@ int ConsoleInputSizeArray(const int sizeMax)
 int ConsoleInputArray(int sizeMax, double A[])
 {
     int size = ConsoleInputSizeArray(sizeMax);
-        for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         cout << " Array[ " << i << "] "; cin >> A[i];
     }
     return size;
@@ -44,7 +45,7 @@ int ConsoleInputArray(int sizeMax, double A[])
 int RndInputArray(int sizeMax, double A[])
 {
     int size = ConsoleInputSizeArray(sizeMax);
-    int r1=0, r2=0;
+    int r1 = 0, r2 = 0;
     srand(size);
 
     for (int i = 0; i < size; i++) {
@@ -57,7 +58,7 @@ int RndInputArray(int sizeMax, double A[])
     return size;
 }
 
-int ConsoleInputDynamicArrayNew(int sizeMax, pDouble &pA)
+int ConsoleInputDynamicArrayNew(int sizeMax, pDouble& pA)
 {
     int size = ConsoleInputSizeArray(sizeMax);
     pA = new double[size];
@@ -79,23 +80,23 @@ int ConsoleInputDynamicArray_calloc(int sizeMax, pDouble& pA)
     return size;
 }
 
-void ConsoleInputVector(int sizeMax, vector<double> &A)
+void ConsoleInputVector(int sizeMax, vector<double>& A)
 {
     int size = ConsoleInputSizeArray(sizeMax);
     double d;
     for (int i = 0; i < size; i++) {
         cout << " Array[ " << i << "] "; cin >> d; A.push_back(d);
     }
-    return ;
+    return;
 }
 
 
 /*
-*  WriteArrayTextFile 
+*  WriteArrayTextFile
 *
 */
 
-void WriteArrayTextFile(int n, double *arr, const char *fileName )
+void WriteArrayTextFile(int n, double* arr, const char* fileName)
 {
     ofstream fout(fileName);
     if (fout.fail()) return;
@@ -117,12 +118,12 @@ int ReadArrayTextFile(int n, double* arr, const char* fileName)
     if (fin.fail()) return 0;
     fin >> size;
     if (size <= 0) return 0;
-    if (size > n) size = n;   
+    if (size > n) size = n;
     for (int i = 0; i < n; i++)
-       fin>> arr[i];
+        fin >> arr[i];
     fin.close();
     return size;
-    
+
 }
 
 
@@ -132,14 +133,14 @@ void WriteArrayBinFile(int n, double* arr, const char* fileName)
     ofstream bfout(fileName, ios_base::binary);
     if (bfout.fail()) return;
     bfout.write((const char*)&n, sizeof(int));
-    std::streamsize  cn = static_cast<std::streamsize>(n) *sizeof(double);
+    std::streamsize  cn = static_cast<std::streamsize>(n) * sizeof(double);
     bfout.write((const char*)arr, cn);
     bfout.close();
 }
 
 int ReadArrayBinFile(int n, double* arr, const char* fileName)
 {
-    int size=0;
+    int size = 0;
     ifstream bfin(fileName, ios_base::binary);
     if (bfin.fail()) return 0;
     bfin.read((char*)&size, sizeof(int));
@@ -157,14 +158,14 @@ void ShowMainMenu()
     cout << "    1.  Task 1  \n";
     cout << "    2.  Task 2  \n";
     cout << "    3.  Task 3  \n";
-  }
+}
 
 void MenuTask()
 {
     cout << "     Menu Task   \n";
     cout << "    1.  Local array  \n";
     cout << "    2.  Dynamic array 1 \n";
-    cout << "    3.  Dynamic array 2  new \n"; 
+    cout << "    3.  Dynamic array 2  new \n";
     cout << "    4.  Dynamic array : vector \n";
     cout << "    5.  Exit \n";
 }
@@ -181,13 +182,13 @@ void MenuInput()
 
 
 /*
-* Задано одновимірний масив А розміру 2N. 
-* Побудувати два масиви В і С розміру N, 
+* Задано одновимірний масив А розміру 2N.
+* Побудувати два масиви В і С розміру N,
 * включивши  у масив В елементи масиву А з парними індексами,
 * а у С - з непарними.
 *****************
-*  A - in 
-*  B, C - out 
+*  A - in
+*  B, C - out
 */
 void  TestVariant(int N, double* A, double* B, double* C) {
     for (int i = 0; i < N; i++) {
@@ -197,8 +198,8 @@ void  TestVariant(int N, double* A, double* B, double* C) {
 }
 /*
 *  Task  Var
-* 
-* 
+*
+*
 */
 void TaskV()
 {
@@ -208,16 +209,16 @@ void TaskV()
         MenuTask();
         ch = getchar();
         getchar();
-            switch (ch) {
-             case '1': cout << " 1 "; break;
-             case '2': cout << " 2 "; break;
+        switch (ch) {
+        case '1': cout << " 1 "; break;
+        case '2': cout << " 2 "; break;
             //
-            case '5': return;
-            }
+        case '5': return;
+        }
         cout << " Press any key and enter\n";
         ch = getchar();
-        } while (ch != 27);
-    
+    } while (ch != 27);
+
 }
 
 void ArrayLocal()
@@ -241,40 +242,169 @@ void ArrayLocal()
     } while (ch != 27);
 
 }
-
-
-int main()
-{ 
-    
-    
-    
-    const int MAX_SIZE = 560;
-    std::cout << "Hello World!\n";
-    ShowMainMenu();
-    /*
-    double A[MAX_SIZE], B[MAX_SIZE],C[MAX_SIZE];
-    int n,m;
-    n = RndInputArray(MAX_SIZE, A);
-    WriteArrayTextFile(n, A, "1.txt");
-    m = ReadArrayTextFile(MAX_SIZE, B, "1.txt");
-    cout << " \n m= " << m << endl;
-    for (int i = 0; i < m; i++)
-        cout << B[i] << "   ";
-    WriteArrayBinFile(n, A, "1.bin");
-    m = ReadArrayBinFile(MAX_SIZE, C, "1.bin");
-    cout << " \n m= " << m << endl;
-    for (int i = 0; i < m; i++)
-        cout << C[i] << "   ";
-    cout << "\n  Vector \n";
-    vector<double> vA;
-    ConsoleInputVector(MAX_SIZE, vA);
-    for (auto v : vA) {
-        cout << v << "   ";
+void task1() {
+    double A[100];
+    double B[100];
+    int i, j;
+    int n;
+    int bN = 0;//Рахунок,що буде рахувати скільки елементів в масиві В
+    cout << "Enter lenght:";//Ввід значень 
+    cin >> n;
+    ReadArrayTextFile(n, A, "1ReadArrayA.txt");
+    WriteArrayBinFile(n, A, "Write1task.bin");
+    if (n == 0) {
+        n = RndInputArray(100, A);
+        WriteArrayTextFile(n, A, "1ReadArrayA.txt");
+        WriteArrayBinFile(n, A, "Write1task.bin");
     }
-*/
-    TaskV();
-    return 1;
+    for (int i = 0; i < n; i++) {
+        cout << "Enter Number : ";//Вввід
+        cin >> A[i];
+        WriteArrayTextFile(A[i] "1ReadArrayA.txt");
+    }
+    for (i = 0; i < n; i++) {//Цикл,у якому,якщо значення,що будуть більше за 10 зберігатимуться у В
+        if (A[i] > 10) {
+            B[bN++] = A[i];
+        }
+    }
+    for (j = 0; j < bN; j++) {//Вивід 
+        cout << B[j] << "" << endl;
+    }
+    WriteArrayTextFile(B[j], "1ReadArrayA.txt");
+    WriteArrayBinFile(B[j] "Write1task.bin");
+    return;
+}
+void task2() {
+    double* A;
+    int n, i;
+    int* T1;//умова задачі
+    int* T2;//умова задачі
+    int index;
+    int min;
+    int min_index = 0;
+    T1 = new int;
+    T2 = new int;
+    A = new double[100];
+    cout << "Enter lenght of Array :";//Ввід довжини масиву
+    cin >> n;
+    ReadArrayTextFile(n, A, "2ReadArrayA.txt");
+    WriteArrayBinFile(n, A, "Write2task.bin");
+    if (n == 0) {
+        n = RndInputArray(100, A);
+        WriteArrayTextFile(n, A, "2ReadArrayA.txt");
+        WriteArrayBinFile(n, A, "Write2task.bin");
+    }
+    for (i = 0; i < n; i++) {//Ввід чисел,що будуть знаходяться в масиві
+        cout << "Enter Number :";
+        cin >> A[i];
+    }
+    cout << "Enter T1 :";//Значення для Т1
+    cin >> *T1;
+    cout << "Enter T2 :";//Значення для Т1
+    cin >> *T2;
+    for (i = 0; i < n; i++) {//Записує в index перший елемент масиву,що більше за T2
+        if (A[i] > *T2) {
+            index = i;
+            break;
+        }
+    }
+    min = A[index];
+    for (i = index - 1; i >= 0; i--) {//Знаходить найменший елемент в діапазоні до першого елемента,що більше за Т2
+        if (A[i] < min) {
+            min = A[i];
+            min_index = i;
+        }
+    }
+    if (min < *T1) {
+        cout << "min element is " << min << "\t" << "index of min element :" << min_index;
+    }
+    else;
+    WriteArrayTextFile(min, min_index, "2ReadArrayA.txt");
+    WriteArrayBinFile(min, min_index, "Write2task.bin");
+    delete[]A;
+    delete T1;
+    delete T2;
+    return;
+}
+void task3() {
+    double A[150], B[150], C[300];
+    int n, m, i, j, k;
+    int sum = 0;
+    cout << "Enter the Size for First Array: ";//ввід данних
+    cin >> n;
+    if (n == 0) {
+        n = RndInputArray(100, A);
+        WriteArrayTextFile(n, A, "1ReadArrayA.txt");
+        WriteArrayBinFile(n, A, "Write1task.bin");
+    }
+    for (i = 0; i < n; i++)
+    {
+        cout << "Enter Number for First Array:";//ввід данних
+        cin >> A[i];
+        C[i] = A[i];
+    }
+    k = i;//Рахунок
+    cout << "\nEnter the Size for Second Array: ";//ввід данних
+    cin >> m;
+    if (m == 0) {
+        m = RndInputArray(100, B);
+        WriteArrayTextFile(m, B, "3ReadArrayB.txt");
+        WriteArrayBinFile(m, B, "Write3task.bin");
+    }
+    for (i = 0; i < m; i++)
+    {
+        cout << "Enter Number for Second Array :";//ввід данних
+        cin >> B[i];
+        C[k] = B[i];
+        k++;
+    }
+    cout << "\n C: \n";//Вивід масиву 
+    for (i = 0; i < k; i++) {
+        cout << C[i] << "\t";
+    }
+    cout << endl;
+    ReadArrayTextFile(n, A, "3ReadArrayA.txt");
+    ReadArrayTextFile(n, B, "3ReadArrayB.txt");
+    ReadArrayTextFile(n, C, "3ReadArrayC.txt");
+    WriteArrayBinFile(n, A, "Write3task.bin");
+    WriteArrayBinFile(n, B, "Write3task.bin");
+    WriteArrayBinFile(n, C, "Write3task.bin");
+    for (i = 0; i < k - 1; i++) {//bubble sort
+        for (j = 0; j < k - i - 1; j++) {
+            if (C[j] > C[j + 1]) {
+                swap(C[j], C[j + 1]);
+            }
+        }
+    }
+    cout << "C : \t" << endl;
+    for (i = 0; i < k; i++) {//Вивід відсортованого масиву
+        cout << C[i] << "\t";
+    }
+    for (i = 0; i < k; i++) {//Сума елементів серед масиву 
+        sum += C[i];
+    }
+    cout << endl;
+    cout << "Sum A+B\t" << sum << endl;//Вивід відповіді 
+    WriteArrayBinFile(sum ,"Write3task.bin");
+    WriteArrayTextFile(sum ,"1ReadArrayA.txt");
+    return;
+}
 
+int main() {
+    ShowMainMenu();
+    cout << "Choose Task which one do you want to watch :";
+    int c;
+    cin >> c;
+    if (c == 1) {
+        task1();
+    }
+    else if (c == 2) {
+        task2();
+    }
+    else if (c == 3) {
+        task3();
+    }
+    return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

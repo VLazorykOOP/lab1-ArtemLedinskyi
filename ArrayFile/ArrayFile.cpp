@@ -249,7 +249,7 @@ void task1() {
     int n;
     int bN = 0;//Рахунок,що буде рахувати скільки елементів в масиві В
     cout << "Enter lenght:";//Ввід значень 
-    cin >> n;
+    cin >> n;//ConsoleInputSizeArray(n);можна було зробити так.
     ReadArrayTextFile(n, A, "1ReadArrayA.txt");
     WriteArrayBinFile(n, A, "Write1task.bin");
     if (n == 0) {
@@ -257,10 +257,11 @@ void task1() {
         WriteArrayTextFile(n, A, "1ReadArrayA.txt");
         WriteArrayBinFile(n, A, "Write1task.bin");
     }
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {//ConsoleInputArray(n,A);можна було зробити так.
         cout << "Enter Number : ";//Вввід
         cin >> A[i];
-        WriteArrayTextFile(A[i] "1ReadArrayA.txt");
+        WriteArrayTextFile(A[i] ,"1ReadArrayA.txt");
+        WriteArrayBinFile(A[i], "Write1task.bin");
     }
     for (i = 0; i < n; i++) {//Цикл,у якому,якщо значення,що будуть більше за 10 зберігатимуться у В
         if (A[i] > 10) {
@@ -270,8 +271,8 @@ void task1() {
     for (j = 0; j < bN; j++) {//Вивід 
         cout << B[j] << "" << endl;
     }
-    WriteArrayTextFile(B[j], "1ReadArrayA.txt");
-    WriteArrayBinFile(B[j] "Write1task.bin");
+    WriteArrayTextFile(B[j], "Result1Task.txt");
+    WriteArrayBinFile(B[j] "Result1Task.bin");
     return;
 }
 void task2() {
@@ -286,7 +287,7 @@ void task2() {
     T2 = new int;
     A = new double[100];
     cout << "Enter lenght of Array :";//Ввід довжини масиву
-    cin >> n;
+    cin >> n;//ConsoleInputSizeArray(n);можна було зробити так.
     ReadArrayTextFile(n, A, "2ReadArrayA.txt");
     WriteArrayBinFile(n, A, "Write2task.bin");
     if (n == 0) {
@@ -294,7 +295,7 @@ void task2() {
         WriteArrayTextFile(n, A, "2ReadArrayA.txt");
         WriteArrayBinFile(n, A, "Write2task.bin");
     }
-    for (i = 0; i < n; i++) {//Ввід чисел,що будуть знаходяться в масиві
+    for (i = 0; i < n; i++) {//Ввід чисел,що будуть знаходяться в масиві.ConsoleInputArray(n,A);можна було зробити так.
         cout << "Enter Number :";
         cin >> A[i];
     }
@@ -319,8 +320,8 @@ void task2() {
         cout << "min element is " << min << "\t" << "index of min element :" << min_index;
     }
     else;
-    WriteArrayTextFile(min, min_index, "2ReadArrayA.txt");
-    WriteArrayBinFile(min, min_index, "Write2task.bin");
+    WriteArrayTextFile(min, min_index, "Result2Task.txt");
+    WriteArrayBinFile(min, min_index, "Result2Task.bin");
     delete[]A;
     delete T1;
     delete T2;
@@ -331,13 +332,13 @@ void task3() {
     int n, m, i, j, k;
     int sum = 0;
     cout << "Enter the Size for First Array: ";//ввід данних
-    cin >> n;
+    cin >> n;//ConsoleInputSizeArray(n);можна було зробити так.
     if (n == 0) {
         n = RndInputArray(100, A);
         WriteArrayTextFile(n, A, "1ReadArrayA.txt");
         WriteArrayBinFile(n, A, "Write1task.bin");
     }
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++)//ConsoleInputArray(n, A); можна було зробити так.
     {
         cout << "Enter Number for First Array:";//ввід данних
         cin >> A[i];
@@ -345,7 +346,7 @@ void task3() {
     }
     k = i;//Рахунок
     cout << "\nEnter the Size for Second Array: ";//ввід данних
-    cin >> m;
+    cin >> m;//ConsoleInputSizeArray(m);можна було зробити так.
     if (m == 0) {
         m = RndInputArray(100, B);
         WriteArrayTextFile(m, B, "3ReadArrayB.txt");
@@ -353,7 +354,7 @@ void task3() {
     }
     for (i = 0; i < m; i++)
     {
-        cout << "Enter Number for Second Array :";//ввід данних
+        cout << "Enter Number for Second Array :";//ввід данних.ConsoleInputArray(m,B);можна було зробити так.
         cin >> B[i];
         C[k] = B[i];
         k++;
@@ -385,8 +386,8 @@ void task3() {
     }
     cout << endl;
     cout << "Sum A+B\t" << sum << endl;//Вивід відповіді 
-    WriteArrayBinFile(sum ,"Write3task.bin");
-    WriteArrayTextFile(sum ,"1ReadArrayA.txt");
+    WriteArrayBinFile(sum ,"Result3Task.bin");
+    WriteArrayTextFile(sum ,"Result3Task.txt");
     return;
 }
 
